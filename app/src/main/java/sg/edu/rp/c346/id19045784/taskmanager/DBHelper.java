@@ -76,7 +76,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 String name = cursor.getString(1);
                 String description = cursor.getString(2);
 //                Task obj = new Task(id, description, date);
-                tasks.add(name + "\n" + description);
+                tasks.add(id + " " + name + "\n" + description);
             } while (cursor.moveToNext());
         }
         cursor.close();
