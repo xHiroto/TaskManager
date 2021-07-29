@@ -16,7 +16,7 @@ import java.util.Calendar;
 public class AddActivity extends AppCompatActivity {
 
     int reqCode = 12345;
-    EditText etName, etDesc;
+    EditText etName, etDesc, etRemind;
     Button btnAdd, btnCancel;
 
     @Override
@@ -25,7 +25,8 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
 
         etName = findViewById(R.id.etName);
-        etDesc = findViewById(R.id.etDescription);
+        etDesc = findViewById(R.id.etDesc);
+        etRemind = findViewById(R.id.etRemind);
         btnAdd = findViewById(R.id.btnAdd);
         btnCancel = findViewById(R.id.btnCancel);
 
@@ -33,8 +34,12 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                String name  = etName.getText().toString();
+                String desc = etDesc.getText().toString();
+                String time = etRemind.getText().toString();
+
                 Calendar calendar = Calendar.getInstance();
-                calendar.add(Calendar.SECOND, 5);
+                calendar.add(Calendar.SECOND, Integer.parseInt(time));
 
                 Intent intent = new Intent(
                         AddActivity.this,
@@ -51,14 +56,12 @@ public class AddActivity extends AppCompatActivity {
                 am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent);
 
 
-                String name  = etName.getText().toString();
-                String desc = etDesc.getText().toString();
+
 
                 DBHelper dbh = new DBHelper(AddActivity.this);
                 dbh.insertTask(desc, name);
                 dbh.close();
-                Intent i = new Intent(AddActivity.this,MainActivity.class);
-                startActivity(i);
+                finish();
 
             }
         });
