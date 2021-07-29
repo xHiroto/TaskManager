@@ -71,12 +71,18 @@ public class NotificationReceiver extends BroadcastReceiver {
         builder.setLargeIcon(largeIcon);
         builder.setContentIntent(pIntent);
         builder.setAutoCancel(true);
+        Notification notification = new Notification();
+        notification.ledARGB = 0xff0000ff; // Blue color light flash
+        notification.ledOnMS = 2000; // LED is on for 2 second
+        notification.ledOffMS = 500; // LED is off for 0.5 second
+        notification.flags = Notification.FLAG_SHOW_LIGHTS;
+//        notificationManager.notify(0, notification);
         builder.setLights(Color.CYAN, 5000, 5000);
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         builder.setSound(uri);
         builder.setPriority(Notification.PRIORITY_HIGH);
 
-        Notification n = builder.build();
-        notificationManager.notify(123,n);
+        notification = builder.build();
+        notificationManager.notify(123,notification);
     }
 }
