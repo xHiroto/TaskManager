@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         btnTask = findViewById(R.id.btnTask);
         lv = findViewById(R.id.lv);
         altasks = dbTask.getTasks();
-        aaTasks = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1,altasks);
+        aaTasks = new ArrayAdapter<String >(MainActivity.this, android.R.layout.simple_list_item_1,altasks);
 
 
         aaTasks.notifyDataSetChanged();
