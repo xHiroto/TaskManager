@@ -62,10 +62,13 @@ public class NotificationReceiver extends BroadcastReceiver {
         builder.setContentTitle("Task Manager Reminder");
         DBHelper dbHelper = new DBHelper(context.getApplicationContext());
         ArrayList<Task> data = dbHelper.getTasks();
-        for (int a = 0; a < data.size(); a++) {
-            builder.setContentText(dbHelper.getTasks().get(a).getName());
+//        for (int a = 0; a < data.size(); a++) {
+//            builder.setContentText(dbHelper.getTasks().get(a).getName());
+//
+//        }
 
-        }
+        builder.setContentText(dbHelper.getTasks().get(data.size() - 1).getName());
+
         builder.setSmallIcon(android.R.drawable.ic_dialog_info);
         builder.setStyle(bigPicture);
         builder.setLargeIcon(largeIcon);
