@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnTask;
     ListView lv;
-    ArrayList<String> altasks;
-    ArrayAdapter<String> aaTasks;
+    ArrayList<Task> altasks;
+    ArrayAdapter<Task> aaTasks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         btnTask = findViewById(R.id.btnTask);
         lv = findViewById(R.id.lv);
         altasks = dbTask.getTasks();
-        aaTasks = new ArrayAdapter<String >(MainActivity.this, android.R.layout.simple_list_item_1,altasks);
+        aaTasks = new ArrayAdapter<Task>(MainActivity.this, android.R.layout.simple_list_item_1,altasks);
 
 
         aaTasks.notifyDataSetChanged();
