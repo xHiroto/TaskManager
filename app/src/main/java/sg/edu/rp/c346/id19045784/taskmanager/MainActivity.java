@@ -25,14 +25,6 @@ public class MainActivity extends AppCompatActivity {
         final DBHelper dbTask = new DBHelper(MainActivity.this);
         btnTask = findViewById(R.id.btnTask);
         lv = findViewById(R.id.lv);
-        altasks = dbTask.getTasks();
-        aaTasks = new ArrayAdapter<Task>(MainActivity.this, android.R.layout.simple_list_item_1,altasks);
-
-
-        aaTasks.notifyDataSetChanged();
-
-        lv.setAdapter(aaTasks);
-
 
 
         btnTask.setOnClickListener(new View.OnClickListener() {
@@ -47,4 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DBHelper dbTask = new DBHelper(MainActivity.this);
+        altasks = dbTask.getTasks();
+        aaTasks = new ArrayAdapter<Task>(MainActivity.this, android.R.layout.simple_list_item_1,altasks);
+        aaTasks.notifyDataSetChanged();
+        lv.setAdapter(aaTasks);
+
+
+    }
 }
